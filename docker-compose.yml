@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+    db:
+        image: mongo
+        ports:
+            - 27017:27017
+        expose:
+            - '27017'
+        networks:
+            - starwars_network
+
+    api:
+        build: .
+        environment:
+            - DB_URI=mongodb://db:27017
+        ports:
+            - 8080:8080
+        depends_on:
+            - db
+        networks:
+            - starwars_network
+        
+networks:
+    starwars_network:
+        driver: bridge
