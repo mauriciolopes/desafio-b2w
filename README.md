@@ -11,7 +11,7 @@
 2. Go to `cmd/planet-api` folder and run: `go install`
 3. Run: `$GOPATH/bin/planet-api`
 
-## Running the project with docker
+## Running the project with Docker
 ### Requirements
 - [Docker](https://www.docker.com)
 - [Docker Compose](https://www.docker.com)

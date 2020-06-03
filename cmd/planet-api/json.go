@@ -18,7 +18,7 @@ func (re ResponseError) Error() string {
 }
 
 func jsonWrite(w http.ResponseWriter, v interface{}) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	jsonEnc := json.NewEncoder(w)
 	err := jsonEnc.Encode(v)
 	if err != nil {
@@ -27,7 +27,7 @@ func jsonWrite(w http.ResponseWriter, v interface{}) {
 }
 
 func jsonWriteError(w http.ResponseWriter, status int, msg string) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(status)
 	e := ResponseError{status, msg}
 	jsonEnc := json.NewEncoder(w)
