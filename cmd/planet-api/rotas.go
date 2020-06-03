@@ -39,7 +39,7 @@ func allPlanetsHandler(f *core.Facade) http.HandlerFunc {
 			jsonError(w, err)
 			return
 		}
-		jsonWrite(w, result)
+		jsonWrite(w, http.StatusOK, result)
 	}
 }
 
@@ -54,13 +54,12 @@ func addPlanetHandler(f *core.Facade) http.HandlerFunc {
 			jsonError(w, err)
 			return
 		}
-		w.WriteHeader(http.StatusCreated)
 		planet, err = f.Planets().Get(id.Hex())
 		if err != nil {
 			jsonError(w, err)
 			return
 		}
-		jsonWrite(w, planet)
+		jsonWrite(w, http.StatusCreated, planet)
 	}
 }
 
@@ -71,7 +70,7 @@ func planetByIDHandler(f *core.Facade) http.HandlerFunc {
 			jsonError(w, err)
 			return
 		}
-		jsonWrite(w, p)
+		jsonWrite(w, http.StatusOK, p)
 	}
 }
 

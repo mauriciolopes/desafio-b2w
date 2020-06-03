@@ -17,8 +17,9 @@ func (re ResponseError) Error() string {
 	return re.Message
 }
 
-func jsonWrite(w http.ResponseWriter, v interface{}) {
+func jsonWrite(w http.ResponseWriter, statusCode int, v interface{}) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.WriteHeader(statusCode)
 	jsonEnc := json.NewEncoder(w)
 	err := jsonEnc.Encode(v)
 	if err != nil {
